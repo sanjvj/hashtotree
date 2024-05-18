@@ -1,0 +1,47 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+class Main {
+    static boolean checkCount(int arr[], int n, int k) {
+        HashMap<Integer, Integer> hash = new HashMap<>();
+        // Maintain a hash
+        for (int i = 0; i < n; i++) {
+            hash.put(arr[i], hash.getOrDefault(arr[i], 0) + 1);
+        }
+
+        // Check for each value in hash
+        for (Map.Entry<Integer, Integer> x : hash.entrySet()) {
+            if (x.getValue() > 2 * k) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input array size
+        System.out.println("Enter the size of the array:");
+        int n = scanner.nextInt();
+
+        // Input array elements
+        int[] arr = new int[n];
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        // Input value of k
+        System.out.println("Enter the value of k:");
+        int k = scanner.nextInt();
+
+        // Call the function and print the result
+        System.out.println(checkCount(arr, n, k));
+
+        // Close the scanner
+        scanner.close();
+    }
+}
